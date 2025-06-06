@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { type InvoiceFilterType, getAllInvoices } from "@/lib/actions/invoice";
+import { getAllInvoices, type InvoiceFilterType } from "@/lib/actions/invoice";
 
 export const metadata: Metadata = {
   description: "Manage your invoices.",

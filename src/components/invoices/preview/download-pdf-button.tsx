@@ -31,7 +31,7 @@ export function DownloadPdfButton({ children, invoice, organization }: Props) {
           className="-mt-4"
           fileName={invoice.invoiceId ?? "invoice"}
         >
-          {() => children}
+          {children}
         </PDFDownloadLink>
       ) : null}
     </>

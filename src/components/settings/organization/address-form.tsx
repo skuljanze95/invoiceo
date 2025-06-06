@@ -17,8 +17,8 @@ import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/use-toast";
 import { updateOrganization } from "@/lib/actions/organization";
 import {
-  type OrganizationPartialSchemaType,
   organizationPartialFormSchema,
+  type OrganizationPartialSchemaType,
 } from "@/lib/form-schema/organization-form";
 
 import {

@@ -1,10 +1,10 @@
 "use server";
 import { env } from "@/env";
-import { renderToBuffer } from "@react-pdf/renderer";
 import {
   Document,
   Image,
   Page,
+  renderToBuffer,
   StyleSheet,
   Text,
   View,
@@ -77,6 +77,7 @@ const PdfDocument = ({ invoice, organization }: Props) => {
         <View style={styles.section}>
           <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
             <View>
+              {/* eslint-disable-next-line jsx-a11y/alt-text -- react-pdf Image component does not have `alt` prop */}
               <Image src={baseUrl + "/invoiceo-logo.png"} style={styles.logo} />
             </View>
             <View style={styles.organization}>
