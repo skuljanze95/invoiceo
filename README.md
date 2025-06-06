@@ -54,16 +54,9 @@ Follow these instructions to get up and running on your local machine.
    ```bash
    npm install
    ```
-3. Create an .env.local file with this content (This step is for sending pdf to email feature):
-   ```env
-   NEXT_PUBLIC_APP_URL=http://localhost:3000
-   TURSO_DATABASE_URL=http://127.0.0.1:8080
-   TURSO_AUTH_TOKEN=token
-   RESEND_API_KEY=<your resend api key>
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your public key>
-   CLERK_SECRET_KEY=<your secret key>
-   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/auth/sign-in
-   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/auth/sign-up
+3. Copy the .env.local.example file to .env.local and add real values (This step is for sending pdf to email feature):
+   ```bash
+   cp .env.local.example .env.local
    ```
 4. Start development server
 
