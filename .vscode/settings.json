@@ -1,0 +1,4 @@
+{
+  "tsImportSorter.configuration.groupRules": ["^node:", {}, "^[.]", "^@/"],
+  "tsImportSorter.configuration.emptyLinesBetweenGroups": 1
+}
