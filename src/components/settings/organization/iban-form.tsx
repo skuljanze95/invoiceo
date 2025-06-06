@@ -75,7 +75,7 @@ export function IbanForm({ bankIban, id }: Props) {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form id="vat-form" onSubmit={form.handleSubmit(onSubmit)}>
+          <form id="iban-form" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               render={({ field }) => (
                 <FormItem>
@@ -100,7 +100,7 @@ export function IbanForm({ bankIban, id }: Props) {
         <Button
           className="h-8"
           disabled={isLoading}
-          form="vat-form"
+          form="iban-form"
           size="sm"
           type="submit"
         >
