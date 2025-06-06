@@ -38,12 +38,9 @@ export const env = createEnv({
     RESEND_API_KEY: z.string({
       required_error: "Missing env variable: RESEND_API_KEY",
     }),
-    TURSO_AUTH_TOKEN:
-      process.env.NODE_ENV === "production"
-        ? z.string({
-            required_error: "Missing env variable: TURSO_AUTH_TOKEN",
-          })
-        : z.string().optional(),
+    TURSO_AUTH_TOKEN: z.string({
+      required_error: "Missing env variable: TURSO_AUTH_TOKEN",
+    }),
     TURSO_DATABASE_URL: z.string({
       required_error: "Missing env variable: TURSO_DATABASE_URL",
     }),

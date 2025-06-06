@@ -119,7 +119,7 @@ export function InvoceDetails({ clients, handleSubmit }: Props) {
               <Input
                 {...field}
                 onBlur={handleSubmit}
-                value={field.value === "New Draft" ? "" : field.value ?? ""}
+                value={field.value === "New Draft" ? "" : (field.value ?? "")}
               />
             </FormControl>
             <FormMessage />

@@ -1,0 +1,10 @@
+{
+  "tsImportSorter.configuration.groupRules": [
+    "^node:",
+    "^react",
+    {},
+    "^@/(components|lib)",
+    "^[.]"
+  ],
+  "tsImportSorter.configuration.emptyLinesBetweenGroups": 1
+}

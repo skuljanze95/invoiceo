@@ -85,7 +85,7 @@ const config = {
       "error",
       {
         order: "asc",
-        type: "natural",
+        type: "alphabetical",
       },
     ],
     "perfectionist/sort-objects": [

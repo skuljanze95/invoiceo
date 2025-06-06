@@ -8,9 +8,9 @@ import { PlusCircle } from "lucide-react";
 
 import { addClient } from "@/lib/actions/client";
 import {
+  clientFormSchema,
   type ClientFormType,
   DEFAULT_CLIENT_FORM_VALUES,
-  clientFormSchema,
 } from "@/lib/form-schema/client-form";
 
 import { Button } from "../ui/button";

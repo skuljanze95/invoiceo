@@ -7,8 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { updateClient } from "@/lib/actions/client";
 import {
-  type ClientFormType,
   clientFormSchema,
+  type ClientFormType,
 } from "@/lib/form-schema/client-form";
 
 import { Button } from "../ui/button";

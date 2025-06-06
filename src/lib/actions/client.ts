@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { v4 as uuidv4 } from "uuid";
 
 import { db } from "../db/db";
-import { type InsertClientType, clients } from "../db/schema/client";
+import { clients, type InsertClientType } from "../db/schema/client";
 import { type ClientFormType } from "../form-schema/client-form";
 
 function handleAuth() {
