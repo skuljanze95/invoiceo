@@ -17,7 +17,7 @@ Invoiceo is a invoice generator application built with Next.js 14. It provides a
 - **Next.js:** React framework for SSR and client-side navigation.
 - **TypeScript:** JavaScript superset with static typing.
 - **Clerk:** Authentication platform.
-- **Turso:** SQLite-compatible database built on libSQL,.
+- **Turso:** SQLite-compatible database built on libSQL.
 - **Drizzle:** Headless TypeScript ORM.
 - **Resend:** Email API.
 - **Shadcn-UI:** UI library for enhanced visuals.
