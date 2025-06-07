@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/card";
 import { getClientById } from "@/lib/actions/client";
 import {
-  type InvoiceFilterType,
   getAllInvoicesForClient,
   getThisMonthDetails,
   getThisWeekDetails,
+  type InvoiceFilterType,
 } from "@/lib/actions/invoice";
 import { formatCurrency } from "@/lib/utils";
 

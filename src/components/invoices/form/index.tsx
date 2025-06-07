@@ -11,8 +11,8 @@ import { toast } from "@/components/ui/use-toast";
 import { sendInvoice, updateInvoice } from "@/lib/actions/invoice";
 import { type InsertClientType } from "@/lib/db/schema/client";
 import {
-  type InvoiceFormType,
   invoiceFormSchema,
+  type InvoiceFormType,
 } from "@/lib/form-schema/invoice-form";
 
 import { InvoceDetails } from "./invoice-details";

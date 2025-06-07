@@ -1,12 +1,13 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 import {
   Document,
   Font,
   Image,
-  PDFViewer,
   Page,
+  PDFViewer,
   StyleSheet,
   Text,
   View,
@@ -81,6 +82,7 @@ export function PdfDocument({ invoice, organization }: Props) {
         <View style={styles.section}>
           <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
             <View>
+              {/* eslint-disable-next-line jsx-a11y/alt-text -- react-pdf Image component does not have `alt` prop */}
               <Image src={"/invoiceo-logo.png"} style={styles.logo} />
             </View>
             <View style={styles.organization}>
