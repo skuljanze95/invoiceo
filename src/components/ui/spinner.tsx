@@ -1,5 +1,13 @@
+import type { ComponentProps } from "react";
+
 import { Loader2Icon } from "lucide-react";
 
-export const Spinner = () => {
-  return <Loader2Icon className="h-4 w-4 animate-spin" />;
+import { cn } from "@/lib/utils";
+
+type Props = ComponentProps<typeof Loader2Icon>;
+
+export const Spinner = ({ className, ...props }: Props) => {
+  return (
+    <Loader2Icon className={cn("h-4 w-4 animate-spin", className)} {...props} />
+  );
 };

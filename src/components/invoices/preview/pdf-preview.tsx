@@ -1,7 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
+import { type InsertOrganizationType } from "@/lib/db/schema/organization";
+import { type InvoiceFormType } from "@/lib/form-schema/invoice-form";
+import { formatCurrency } from "@/lib/utils";
+
+// Import via relative node_modules path to avoid "Element type
+// is invalid" error in the terminal when importing directly from
+// @react-pdf/renderer in a Next.js app
+//
+// ```
+// Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined
+// ```
+//
+// - https://github.com/diegomura/react-pdf/issues/2890#issuecomment-2443831013
 import {
   Document,
   Font,
@@ -11,11 +27,8 @@ import {
   StyleSheet,
   Text,
   View,
-} from "@react-pdf/renderer";
-
-import { type InsertOrganizationType } from "@/lib/db/schema/organization";
-import { type InvoiceFormType } from "@/lib/form-schema/invoice-form";
-import { formatCurrency } from "@/lib/utils";
+} from "../../../../node_modules/@react-pdf/renderer/lib/react-pdf.browser";
+import { DownloadPdfButton } from "./download-pdf-button";
 
 interface Props {
   invoice: InvoiceFormType;
@@ -23,20 +36,53 @@ interface Props {
 }
 
 export function PdfPreview({ invoice, organization }: Props) {
-  const [isClient, setIsClient] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isIframeLoading, setIsIframeLoading] = useState(true);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    if (iframe.contentDocument?.readyState === "complete") {
+      setIsIframeLoading(false);
+      return;
+    }
+
+    setIsIframeLoading(true);
+
+    function handleLoad() {
+      setIsIframeLoading(false);
+    }
+
+    iframe.addEventListener("load", handleLoad);
+
+    return () => {
+      iframe.removeEventListener("load", handleLoad);
+    };
+  }, [invoice, organization]);
 
   return (
-    <>
-      {isClient ? (
-        <PDFViewer showToolbar={false} style={{ aspectRatio: "1.414 / 2" }}>
+    <Card className="m-auto mt-4 flex h-fit w-full max-w-screen-lg flex-col ">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0">
+        <CardTitle>
+          Preview {isIframeLoading && <Spinner className="ml-2 inline-block" />}
+        </CardTitle>
+        <DownloadPdfButton invoice={invoice} organization={organization}>
+          <Button size="sm" variant="outline">
+            Download PDF
+          </Button>
+        </DownloadPdfButton>
+      </CardHeader>
+      <CardContent className="flex w-full  flex-col gap-4 px-6 ">
+        <PDFViewer
+          innerRef={iframeRef}
+          showToolbar={false}
+          style={{ aspectRatio: "1.414 / 2" }}
+        >
           <PdfDocument invoice={invoice} organization={organization} />
         </PDFViewer>
-      ) : null}
-    </>
+      </CardContent>
+    </Card>
   );
 }
 
