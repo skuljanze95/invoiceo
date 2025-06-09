@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 import { SidebarNav } from "@/components/settings/sidebar-nav";
 
 export const metadata: Metadata = {
-  description: "Manage your settigns and preferences.",
+  description: "Manage your settings and preferences.",
   title: "Invoiceo - Settings",
 };
 
