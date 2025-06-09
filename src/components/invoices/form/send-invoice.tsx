@@ -79,14 +79,7 @@ export function SendInvoice({ clients, invoice }: Props) {
             <InvoiceDetails clients={clients} handleSubmit={handleSubmit} />
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Invoice items</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center gap-4 ">
-            <InvoiceItems handleSubmit={handleSubmit} invoice={invoice} />
-          </CardContent>
-        </Card>
+        <InvoiceItems handleSubmit={handleSubmit} invoice={invoice} />
       </form>
     </Form>
   );
