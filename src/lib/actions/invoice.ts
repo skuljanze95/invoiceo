@@ -190,6 +190,13 @@ export async function addInvoice({ clientId }: { clientId?: string }) {
 }
 
 export async function updateInvoice({ invoice }: { invoice: InvoiceFormType }) {
+  const userId = handleAuth();
+  if (invoice.userId !== userId) {
+    return {
+      data: null,
+      error: { message: "Unauthorized: Cannot update this invoice." },
+    };
+  }
   try {
     const result = invoice.items?.reduce(
       (acc, item) => {
@@ -228,7 +235,7 @@ export async function updateInvoice({ invoice }: { invoice: InvoiceFormType }) {
     await db
       .update(invoices)
       .set(updatedInvoice)
-      .where(eq(invoices.id, invoice.id));
+      .where(and(eq(invoices.id, invoice.id), eq(invoices.userId, userId)));
 
     return {
       data: { message: "Invoice updated" },
@@ -319,19 +326,22 @@ export async function markInvoiceAsPaid(id: string) {
   }
 }
 
-export async function removeInvoice(id: string) {
+export async function deleteInvoice(id: string) {
+  const userId = handleAuth();
   try {
-    await db.delete(invoices).where(eq(invoices.id, id));
+    await db
+      .delete(invoices)
+      .where(and(eq(invoices.id, id), eq(invoices.userId, userId)));
 
     return {
-      data: { message: "Invoice removed" },
+      data: { message: "Invoice deleted" },
       error: null,
     };
   } catch (error) {
     console.error(error);
     return {
       data: null,
-      error: { message: "Failed to remove invoice" },
+      error: { message: "Failed to delete invoice" },
     };
   }
 }

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { BackButton } from "@/components/invoices/back-button";
 import { AddNewForm } from "@/components/invoices/form";
-import { InvoiceStatus } from "@/components/invoices/invoce-status";
 import InvoiceActions from "@/components/invoices/invoice-actions";
+import { InvoiceStatus } from "@/components/invoices/invoice-status";
 import { DownloadPdfButton } from "@/components/invoices/preview/download-pdf-button";
 import { PdfPreview } from "@/components/invoices/preview/pdf-preview";
 import { ErrorComponent } from "@/components/shared/error-component";
@@ -62,8 +62,10 @@ export default async function Page({
         />
         <div className="hidden items-center gap-2 md:ml-auto md:flex">
           <InvoiceActions
+            clientName={invoice.client?.name}
             disabled={!organization?.name}
             id={id}
+            invoiceId={invoice.invoiceId}
             issuedAt={invoice.issuedAt}
             paidAt={invoice.paidAt}
           />
@@ -94,8 +96,10 @@ export default async function Page({
         </Card>
         <div className="flex items-center justify-center gap-2 md:hidden">
           <InvoiceActions
+            clientName={invoice.client?.name}
             disabled={!organization?.name}
             id={id}
+            invoiceId={invoice.invoiceId}
             issuedAt={invoice.issuedAt}
             paidAt={invoice.paidAt}
           />
