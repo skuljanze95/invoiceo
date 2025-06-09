@@ -15,24 +15,32 @@ const resend = new Resend(env.RESEND_API_KEY);
 
 interface Props {
   invoice: InvoiceFormType;
-  organization?: InsertOrganizationType;
+  organization: InsertOrganizationType;
 }
 
 export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
-  const clientName = invoice.client?.name;
-  const billingEmail = invoice.client?.billingEmail;
+  const clientContactFirstName = invoice.client?.contactFirstName;
+  const clientBillingEmail = invoice.client?.billingEmail;
+  const organizationName = organization.name;
 
-  if (!clientName) {
+  if (!clientContactFirstName) {
     return {
       data: null,
-      error: { message: "Failed to send invoice, no client name" },
+      error: { message: "Failed to send invoice: no client name" },
     };
   }
 
-  if (!billingEmail) {
+  if (!clientBillingEmail) {
     return {
       data: null,
-      error: { message: "Failed to send invoice, no billing email" },
+      error: { message: "Failed to send invoice: no billing email" },
+    };
+  }
+
+  if (!organizationName) {
+    return {
+      data: null,
+      error: { message: "Failed to send invoice: no organization name" },
     };
   }
 
@@ -46,13 +54,14 @@ export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
       from: "Invoiceo <mail@invoiceo.io>",
       react: (
         <SendInvoiceWithPdf
-          clientName={clientName}
+          clientContactFirstName={clientContactFirstName}
           dueDate={invoice.dueDate && formatDate(invoice.dueDate)}
           invoiceId={invoice.invoiceId}
+          organizationName={organizationName}
         />
       ),
       subject: `Invoice ID ${invoice.invoiceId}`,
-      to: billingEmail,
+      to: clientBillingEmail,
     });
 
     if (response.error) {

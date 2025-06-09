@@ -10,13 +10,15 @@ import {
 } from "@react-email/components";
 
 export default function SendInvoiceWithPdf({
-  clientName,
+  clientContactFirstName,
   dueDate,
   invoiceId,
+  organizationName,
 }: {
-  clientName: string;
+  clientContactFirstName: string;
   dueDate: string | null;
   invoiceId: string;
+  organizationName: string;
 }) {
   return (
     <Html>
@@ -36,7 +38,7 @@ export default function SendInvoiceWithPdf({
             padding: "20px 0 48px",
           }}
         >
-          <Text>Hello {clientName},</Text>
+          <Text>Hello {clientContactFirstName},</Text>
           <Text>
             Please find your invoice #{invoiceId} attached.
             {dueDate && (
@@ -51,7 +53,7 @@ export default function SendInvoiceWithPdf({
             reach out.
           </Text>
           <Text>Best regards,</Text>
-          <Text>The Invoiceo Team</Text>
+          <Text>{organizationName}</Text>
         </Container>
       </Body>
     </Html>
