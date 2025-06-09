@@ -34,11 +34,10 @@ export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
 
     await resend.emails.send({
       attachments: [{ content: pdf, filename: "invoice.pdf" }],
-      from: "Invoiceo <noreply@karlhorky.com>",
+      from: "Invoiceo <mail@invoiceo.io>",
       react: <SendInvoiceWithPdf />,
       subject: "Invoice for " + invoice.invoiceId,
-      // to: billingEmail,
-      to: "karl.horky@gmail.com",
+      to: billingEmail,
     });
 
     return {
