@@ -25,11 +25,11 @@ export default function InvoiceActions({
       {!issuedAt ? (
         <Button
           disabled={disabled}
-          form="update-invoice-form"
+          form="send-invoice-form"
           size="sm"
           type="submit"
         >
-          Issue Invoice
+          Send Invoice
         </Button>
       ) : (
         <MarkInvoiceAsPaid id={id} paidAt={paidAt} />

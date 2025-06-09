@@ -1,4 +1,5 @@
 "use server";
+
 import { auth } from "@clerk/nextjs/server";
 import { startOfMonth, startOfWeek } from "date-fns";
 import { and, desc, eq, gt, isNotNull, isNull, lt } from "drizzle-orm";
@@ -247,7 +248,6 @@ export async function sendInvoice({ id }: { id: string }) {
   const userId = handleAuth();
 
   try {
-    const { data: invoice, error: invoiceError } = await getInvoiceById(id);
     const { data: organization, error: organizationError } =
       await getOrganization();
 
@@ -258,19 +258,26 @@ export async function sendInvoice({ id }: { id: string }) {
       };
     }
 
+    const { data: invoice, error: invoiceError } = await getInvoiceById(id);
+
     if (invoiceError ?? organizationError) {
       return {
         data: null,
-        error: { message: "Failed to issue invoice" },
+        error: { message: "Failed to send invoice" },
       };
     }
 
+    const issuedAt = new Date();
+
     await db
       .update(invoices)
-      .set({ issuedAt: new Date() })
+      .set({ issuedAt: issuedAt })
       .where(and(eq(invoices.id, invoice.id), eq(invoices.userId, userId)));
 
-    const { data, error } = await sendInvoiceWithPdf({ invoice, organization });
+    const { data, error } = await sendInvoiceWithPdf({
+      invoice: { ...invoice, issuedAt: issuedAt },
+      organization,
+    });
 
     if (error) {
       await db
@@ -292,7 +299,7 @@ export async function sendInvoice({ id }: { id: string }) {
     console.error(error);
     return {
       data: null,
-      error: { message: "Failed to issue invoice" },
+      error: { message: "Failed to send invoice" },
     };
   }
 }

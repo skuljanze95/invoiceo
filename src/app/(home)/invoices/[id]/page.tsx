@@ -2,7 +2,7 @@ import { InfoIcon } from "lucide-react";
 import Link from "next/link";
 
 import { BackButton } from "@/components/invoices/back-button";
-import { AddNewForm } from "@/components/invoices/form";
+import { SendInvoice } from "@/components/invoices/form/send-invoice";
 import { InvoiceStatus } from "@/components/invoices/invoce-status";
 import InvoiceActions from "@/components/invoices/invoice-actions";
 import { DownloadPdfButton } from "@/components/invoices/preview/download-pdf-button";
@@ -77,7 +77,7 @@ export default async function Page({
         )}
       >
         {!invoice.issuedAt && (
-          <AddNewForm clients={clients} invoice={invoice} />
+          <SendInvoice clients={clients} invoice={invoice} />
         )}
         <Card className="m-auto mt-4 flex h-fit w-full max-w-screen-lg flex-col ">
           <CardHeader className="flex  flex-row justify-between">

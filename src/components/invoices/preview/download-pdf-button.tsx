@@ -5,8 +5,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import { type InsertOrganizationType } from "@/lib/db/schema/organization";
 import { type InvoiceFormType } from "@/lib/form-schema/invoice-form";
-
-import { PdfDocument } from "./pdf-preview";
+import { PdfDocument } from "@/lib/pdf-document";
 
 interface Props {
   invoice: InvoiceFormType;
