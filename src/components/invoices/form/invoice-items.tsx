@@ -256,6 +256,7 @@ export function InvoiceItems({ handleSubmit, invoice }: Props) {
                             <FormControl>
                               <Input
                                 className="w-full min-w-24"
+                                step="any"
                                 type="number"
                                 {...field}
                                 min="0"
@@ -278,6 +279,7 @@ export function InvoiceItems({ handleSubmit, invoice }: Props) {
                               <Input
                                 className="w-full min-w-16"
                                 min="0"
+                                step="any"
                                 type="number"
                                 {...field}
                                 onBlur={handleSubmit}
@@ -299,6 +301,7 @@ export function InvoiceItems({ handleSubmit, invoice }: Props) {
                               <Input
                                 className="w-full min-w-16"
                                 min="0"
+                                step="any"
                                 type="number"
                                 {...field}
                                 onBlur={handleSubmit}

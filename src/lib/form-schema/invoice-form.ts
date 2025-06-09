@@ -22,9 +22,9 @@ export const invoiceFormSchema = z.object({
   issuedAt: z.date().nullable(),
   items: z
     .object({
-      quantity: z.coerce.number().min(1, {
-        message: "Required",
-      }),
+      quantity: z.coerce
+        .number()
+        .positive({ message: "Must be greater than 0" }),
       tax: z.coerce.number(),
       title: z.string().min(1, {
         message: "Required",
