@@ -40,7 +40,7 @@ export default function SendInvoiceWithPdf({
         >
           <Text>Hello {clientContactFirstName},</Text>
           <Text>
-            Please find your invoice #{invoiceId} attached.
+            Please find your invoice with ID {invoiceId} attached.
             {dueDate && (
               <>
                 {" "}
