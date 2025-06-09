@@ -11,12 +11,12 @@ import {
 
 export default function SendInvoiceWithPdf({
   clientName,
-  invoiceId,
   dueDate,
+  invoiceId,
 }: {
   clientName: string;
-  invoiceId: string;
   dueDate: string | null;
+  invoiceId: string;
 }) {
   return (
     <Html>

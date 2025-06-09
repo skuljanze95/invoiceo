@@ -47,8 +47,8 @@ export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
       react: (
         <SendInvoiceWithPdf
           clientName={clientName}
-          invoiceId={invoice.invoiceId}
           dueDate={invoice.dueDate && formatDate(invoice.dueDate)}
+          invoiceId={invoice.invoiceId}
         />
       ),
       subject: `Invoice ID ${invoice.invoiceId}`,
