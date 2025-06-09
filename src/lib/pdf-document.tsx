@@ -10,7 +10,7 @@ import {
 
 import { type InsertOrganizationType } from "./db/schema/organization";
 import { type InvoiceFormType } from "./form-schema/invoice-form";
-import { formatCurrency } from "./utils";
+import { formatCurrency, formatDate } from "./utils";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
@@ -84,14 +84,7 @@ export function PdfDocument({ invoice, organization }: Props) {
 
             <Text>
               Sent Date:{" "}
-              {invoice?.issuedAt
-                ? // Format: 9 Jun 2023
-                  new Date(invoice.issuedAt).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })
-                : "N/A"}
+              {invoice?.issuedAt ? formatDate(invoice.issuedAt) : "N/A"}
             </Text>
           </View>
         </View>
@@ -142,16 +135,7 @@ export function PdfDocument({ invoice, organization }: Props) {
               </Text>
               <Text>
                 Due date:{" "}
-                {
-                  // Format: 9 Jun 2023
-                  invoice?.dueDate
-                    ? new Date(invoice.dueDate).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })
-                    : "N/A"
-                }
+                {invoice?.dueDate ? formatDate(invoice.dueDate) : "N/A"}
               </Text>
               {organization?.bankIban && (
                 <Text>IBAN: {organization?.bankIban}</Text>
