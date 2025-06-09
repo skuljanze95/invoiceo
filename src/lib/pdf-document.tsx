@@ -84,7 +84,14 @@ export function PdfDocument({ invoice, organization }: Props) {
 
             <Text>
               Sent Date:{" "}
-              {invoice?.issuedAt ? invoice?.issuedAt.toDateString() : "N/A"}
+              {invoice?.issuedAt
+                ? // Format: 9 Jun 2023
+                  new Date(invoice.issuedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })
+                : "N/A"}
             </Text>
           </View>
         </View>
@@ -133,7 +140,19 @@ export function PdfDocument({ invoice, organization }: Props) {
               <Text style={{ fontWeight: "bold", marginBottom: 4 }}>
                 PAYMENT
               </Text>
-              <Text>Due date: {invoice?.dueDate?.toDateString() ?? "N/A"}</Text>
+              <Text>
+                Due date:{" "}
+                {
+                  // Format: 9 Jun 2023
+                  invoice?.dueDate
+                    ? new Date(invoice.dueDate).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "N/A"
+                }
+              </Text>
               {organization?.bankIban && (
                 <Text>IBAN: {organization?.bankIban}</Text>
               )}
