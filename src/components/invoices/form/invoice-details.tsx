@@ -44,7 +44,7 @@ interface Props {
   handleSubmit: () => void;
 }
 
-export function InvoceDetails({ clients, handleSubmit }: Props) {
+export function InvoiceDetails({ clients, handleSubmit }: Props) {
   const { control } = useFormContext<InvoiceFormType>();
 
   const { open, setOpen } = useHelpers();

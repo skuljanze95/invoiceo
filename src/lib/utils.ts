@@ -11,3 +11,15 @@ export function formatCurrency(amount: number) {
     style: "currency",
   }).format(amount);
 }
+
+/** Format: 9 Jun 2023 */
+export function formatDate(date: Date | string) {
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
