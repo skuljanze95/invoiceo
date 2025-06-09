@@ -18,7 +18,7 @@ import { type SelectInvoiceType } from "@/lib/db/schema/invoice";
 import { formatCurrency } from "@/lib/utils";
 
 import { toast } from "../ui/use-toast";
-import { InvoiceStatus } from "./invoce-status";
+import { InvoiceStatus } from "./invoice-status";
 import { RemoveInvoice } from "./remove-invoice-button";
 
 export const columns: ColumnDef<SelectInvoiceType>[] = [
