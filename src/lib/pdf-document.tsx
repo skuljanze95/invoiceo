@@ -72,7 +72,7 @@ export function PdfDocument({ invoice, organization }: Props) {
               <Text>
                 {organization?.zipCode ?? "Zip code"}
                 {", "}
-                {organization?.state ?? "State"}
+                {organization?.city ?? "City"}
               </Text>
               <Text>{organization?.country ?? "Country"}</Text>
             </View>
@@ -119,7 +119,7 @@ export function PdfDocument({ invoice, organization }: Props) {
               <Text>
                 {invoice?.client?.zipCode}
                 {", "}
-                {invoice?.client?.state}
+                {invoice?.client?.city}
               </Text>
               <Text>{invoice?.client?.country}</Text>
             </View>
