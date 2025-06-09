@@ -22,7 +22,7 @@ interface Props {
   setIsLoading: (loading: boolean) => void;
 }
 
-export function DialogConfirmation({
+export function DialogDeleteConfirmation({
   handleConfirm,
   item,
   loading,
@@ -36,7 +36,7 @@ export function DialogConfirmation({
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently remove your{" "}
+            This action cannot be undone. This will permanently delete your{" "}
             {item}.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -49,9 +49,10 @@ export function DialogConfirmation({
               handleConfirm();
             }}
             disabled={loading}
+            variant="destructive"
           >
             {loading && <Spinner />}
-            Continue
+            Permanently delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

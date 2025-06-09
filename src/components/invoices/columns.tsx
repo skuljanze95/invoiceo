@@ -1,5 +1,6 @@
 "use client";
 
+import { useDeleteInvoice } from "@/hooks/useDeleteInvoice";
 import { type ColumnDef, type Row } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -19,7 +20,6 @@ import { formatCurrency } from "@/lib/utils";
 
 import { toast } from "../ui/use-toast";
 import { InvoiceStatus } from "./invoice-status";
-import { RemoveInvoice } from "./remove-invoice-button";
 
 export const columns: ColumnDef<SelectInvoiceType>[] = [
   {
@@ -98,6 +98,7 @@ export const columns: ColumnDef<SelectInvoiceType>[] = [
 
 function Actions({ row }: { row: Row<SelectInvoiceType> }) {
   const path = usePathname();
+  const { DeleteDialog, setDeleteDialogOpen } = useDeleteInvoice(row.original);
 
   const markAsPaid = async (id: string) => {
     const { data, error } = await markInvoiceAsPaid(id);
@@ -117,6 +118,7 @@ function Actions({ row }: { row: Row<SelectInvoiceType> }) {
 
   return (
     <>
+      <DeleteDialog />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="ml-auto flex h-8 w-8 flex-1 p-0" variant="ghost">
@@ -129,12 +131,16 @@ function Actions({ row }: { row: Row<SelectInvoiceType> }) {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             disabled={!!row.original.paidAt || !row.original.issuedAt}
-            onClick={() => markAsPaid(row.original.id)}
+            onSelect={() => markAsPaid(row.original.id)}
           >
-            <div>Mark as paid</div>
+            Mark as paid
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <RemoveInvoice id={row.original.id} />
+          <DropdownMenuItem
+            onSelect={() => {
+              setDeleteDialogOpen(true);
+            }}
+          >
+            Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

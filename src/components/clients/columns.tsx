@@ -6,7 +6,7 @@ import { useHelpers } from "@/hooks/useHelpers";
 import { type ColumnDef, type Row } from "@tanstack/react-table";
 import { Check, Copy, MoreHorizontal } from "lucide-react";
 
-import { DialogConfirmation } from "@/components/shared/alert-dialog";
+import { DialogDeleteConfirmation } from "@/components/shared/dialog-delete-confirmation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -95,7 +95,7 @@ function Actions({ row }: { row: Row<ClientFormType> }) {
   return (
     <>
       <UpdateClientForm open={open} service={row.original} setOpen={setOpen} />
-      <DialogConfirmation
+      <DialogDeleteConfirmation
         handleConfirm={() => handleDeleteClient(row.original.id)}
         item="client"
         loading={loading}
@@ -118,7 +118,7 @@ function Actions({ row }: { row: Row<ClientFormType> }) {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <div onClick={() => setOpenAlert(true)}>Remove</div>
+            <div onClick={() => setOpenAlert(true)}>Delete</div>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -319,19 +319,19 @@ export async function markInvoiceAsPaid(id: string) {
   }
 }
 
-export async function removeInvoice(id: string) {
+export async function deleteInvoice(id: string) {
   try {
     await db.delete(invoices).where(eq(invoices.id, id));
 
     return {
-      data: { message: "Invoice removed" },
+      data: { message: "Invoice deleted" },
       error: null,
     };
   } catch (error) {
     console.error(error);
     return {
       data: null,
-      error: { message: "Failed to remove invoice" },
+      error: { message: "Failed to delete invoice" },
     };
   }
 }

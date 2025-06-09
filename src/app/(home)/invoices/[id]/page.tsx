@@ -62,8 +62,10 @@ export default async function Page({
         />
         <div className="hidden items-center gap-2 md:ml-auto md:flex">
           <InvoiceActions
+            clientName={invoice.client?.name}
             disabled={!organization?.name}
             id={id}
+            invoiceId={invoice.invoiceId}
             issuedAt={invoice.issuedAt}
             paidAt={invoice.paidAt}
           />
@@ -94,8 +96,10 @@ export default async function Page({
         </Card>
         <div className="flex items-center justify-center gap-2 md:hidden">
           <InvoiceActions
+            clientName={invoice.client?.name}
             disabled={!organization?.name}
             id={id}
+            invoiceId={invoice.invoiceId}
             issuedAt={invoice.issuedAt}
             paidAt={invoice.paidAt}
           />
