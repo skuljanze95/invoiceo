@@ -41,7 +41,7 @@ export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
       <PdfDocument invoice={invoice} organization={organization} />,
     );
 
-    await resend.emails.send({
+    const response = await resend.emails.send({
       attachments: [{ content: pdf, filename: "invoice.pdf" }],
       from: "Invoiceo <mail@invoiceo.io>",
       react: (
@@ -54,6 +54,13 @@ export async function sendInvoiceWithPdf({ invoice, organization }: Props) {
       subject: `Invoice ID ${invoice.invoiceId}`,
       to: billingEmail,
     });
+
+    if (response.error) {
+      return {
+        data: null,
+        error: { message: `Failed to send invoice: ${response.error.message}` },
+      };
+    }
 
     return {
       data: { message: "Invoice sent" },
