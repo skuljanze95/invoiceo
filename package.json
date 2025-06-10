@@ -38,6 +38,8 @@
     "@t3-oss/env-nextjs": "0.13.6",
     "@tanstack/match-sorter-utils": "^8.11.8",
     "@tanstack/react-table": "^8.15.0",
+    "@types/papaparse": "^5.3.16",
+    "big.js": "^7.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
@@ -46,6 +48,7 @@
     "lucide-react": "^0.363.0",
     "next": "14.2.29",
     "next-themes": "^0.3.0",
+    "papaparse": "^5.5.3",
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
@@ -59,6 +62,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/big.js": "^6.2.2",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20",
     "@types/react": "^18",

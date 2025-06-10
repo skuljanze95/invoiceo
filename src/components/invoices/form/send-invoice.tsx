@@ -15,7 +15,7 @@ import {
   type InvoiceFormType,
 } from "@/lib/form-schema/invoice-form";
 
-import { InvoceDetails } from "./invoice-details";
+import { InvoiceDetails } from "./invoice-details";
 import { InvoiceItems } from "./invoice-items";
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
   invoice: InvoiceFormType;
 }
 
-export function AddNewForm({ clients, invoice }: Props) {
+export function SendInvoice({ clients, invoice }: Props) {
   const router = useRouter();
 
   const form = useForm<InvoiceFormType>({
@@ -68,7 +68,7 @@ export function AddNewForm({ clients, invoice }: Props) {
     <Form {...form}>
       <form
         className="flex-1 space-y-4 pt-4"
-        id="update-invoice-form"
+        id="send-invoice-form"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <Card>
@@ -76,17 +76,10 @@ export function AddNewForm({ clients, invoice }: Props) {
             <CardTitle>Invoice Details</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <InvoceDetails clients={clients} handleSubmit={handleSubmit} />
+            <InvoiceDetails clients={clients} handleSubmit={handleSubmit} />
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Invoice items</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center gap-4 ">
-            <InvoiceItems handleSubmit={handleSubmit} invoice={invoice} />
-          </CardContent>
-        </Card>
+        <InvoiceItems handleSubmit={handleSubmit} invoice={invoice} />
       </form>
     </Form>
   );
