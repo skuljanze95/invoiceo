@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 import Big from "big.js";
 import { X } from "lucide-react";
-import Papa from "papaparse";
+import { parse } from "papaparse";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -56,7 +56,7 @@ export function InvoiceItems({ handleSubmit, invoice }: Props) {
       return;
     }
 
-    const result = Papa.parse(csv, {
+    const result = parse(csv, {
       header: true,
       skipEmptyLines: true,
     });
