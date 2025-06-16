@@ -5,11 +5,9 @@ import { BackButton } from "@/components/invoices/back-button";
 import { AddNewForm } from "@/components/invoices/form";
 import { InvoiceStatus } from "@/components/invoices/invoce-status";
 import InvoiceActions from "@/components/invoices/invoice-actions";
-import { DownloadPdfButton } from "@/components/invoices/preview/download-pdf-button";
 import { PdfPreview } from "@/components/invoices/preview/pdf-preview";
 import { ErrorComponent } from "@/components/shared/error-component";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllClients } from "@/lib/actions/client";
 import { getInvoiceById } from "@/lib/actions/invoice";
 import { getOrganization } from "@/lib/actions/organization";
@@ -79,19 +77,7 @@ export default async function Page({
         {!invoice.issuedAt && (
           <AddNewForm clients={clients} invoice={invoice} />
         )}
-        <Card className="m-auto mt-4 flex h-fit w-full max-w-screen-lg flex-col ">
-          <CardHeader className="flex  flex-row justify-between">
-            <CardTitle>Preview</CardTitle>
-            <DownloadPdfButton invoice={invoice} organization={organization}>
-              <Button size="sm" variant="outline">
-                Download PDF
-              </Button>
-            </DownloadPdfButton>
-          </CardHeader>
-          <CardContent className="flex w-full  flex-col gap-4 px-6 ">
-            <PdfPreview invoice={invoice} organization={organization} />
-          </CardContent>
-        </Card>
+        <PdfPreview invoice={invoice} organization={organization} />
         <div className="flex items-center justify-center gap-2 md:hidden">
           <InvoiceActions
             disabled={!organization?.name}
