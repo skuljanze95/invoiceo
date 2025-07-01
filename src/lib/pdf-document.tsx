@@ -44,6 +44,7 @@ export function PdfDocument({ invoice, organization }: Props) {
               top: 0,
               transform: "rotate(-45deg)",
             }}
+            fixed
           >
             <Text
               style={{
